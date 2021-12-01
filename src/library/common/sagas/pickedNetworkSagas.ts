@@ -9,13 +9,11 @@ function* fetchPickedNetworkSaga({id}: any ): any {
       const getPickedNetwork = () =>
         axios.get<any>(`https://api.citybik.es/v2/networks/${id}`);
       const response = yield call(getPickedNetwork);
-      yield console.log('dsjihfvoaeuwgvfaeosfbsehfb', id)
       yield put(
       	fetchPickedNetworkSuccess({
     		  network: response.data.network,
       	})
     );
-	yield console.log('responsedata==================')
   } catch (e: any) {
     yield put(
     	fetchPickedNetworkFailure({

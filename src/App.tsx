@@ -38,7 +38,6 @@ const App = () => {
   useEffect(() => {
 	if (cities.length) {
 		dispatch(fetchPickedNetworRequest(cities[0].id));
-		console.log('todos[0]', cities[0].id)
 	}
   }, [pending]);
 
@@ -56,14 +55,7 @@ const App = () => {
 		liked.splice(index, 1)
 	}
 	setLikedStations(liked);
-	console.log('id', id)
   }
-
-  console.log('pickedNetwork', pickedNetwork)
-  console.log('pickedNetworkPending---------------', pickedNetworkPending)
-  console.log('pickedNetworkError', pickedNetworkError)
-
-  console.log('likedStations', likedStations)
 
   return (
 	  <div>

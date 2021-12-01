@@ -10,7 +10,6 @@ const getCities = () =>
 function* fetchCitiesSaga(): any {
   try {
     const response = yield call(getCities);
-    yield console.log('data----', response.data)
     yield put(
       fetchCitiesSuccess({
     		cities: response.data.networks,
