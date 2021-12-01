@@ -1,25 +1,43 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "/dist",
+    "module": "esnext",
     "target": "es5",
+    "downlevelIteration": true,
     "lib": [
+      "es6",
       "dom",
-      "dom.iterable",
-      "esnext"
+      "es2018.promise"
     ],
+    "inlineSourceMap": true,
     "allowJs": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "resolveJsonModule": true,
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "ignoreDefinitionFiles": false,
+        "configFile": "./tslint.json",
+        "suppressWhileTypeErrorsPresent": false,
+        "mockTypeScriptVersion": false
+      }
+    ],
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "noFallthroughCasesInSwitch": true
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "src"
   ]
