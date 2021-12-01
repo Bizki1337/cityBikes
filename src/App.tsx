@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import cn from 'classnames';
 
 import {
   getCitiesPendingSelector,
@@ -16,7 +17,7 @@ import {
 import { fetchCitiesRequest } from "library/common/actions/citiesActions";
 import { fetchPickedNetworRequest } from "library/common/actions/pickedNetworkActions";
 
-import './App.css';
+import styles from 'App.module.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,12 +60,12 @@ const App = () => {
 
   return (
 	  <div>
-		<div className='header'>
-			<div className='header_name'>Name: {pickedNetwork.name && pickedNetwork.name}</div>
-			<div className='header_amount'>Amount: {pickedNetwork.stations && pickedNetwork.stations.length}</div>
+		<div className={styles.header}>
+			<div className={styles.header_name}>Name: {pickedNetwork.name && pickedNetwork.name}</div>
+			<div className={styles.header_amount}>Amount: {pickedNetwork.stations && pickedNetwork.stations.length}</div>
 		</div>
-		<div className='content'>
-			<div className='collumn'>
+		<div className={styles.content}>
+			<div className={styles.collumn}>
 				{pending ? (
 					<div>Loading...</div>
 					) : error ? (
@@ -72,7 +73,7 @@ const App = () => {
 					) : (
 						cities.map((city: any, index: any) => (
 						<div 
-							className='collumn_item__left'
+							className={styles.collumn_item__left}
 							key={city.id} 
 							onClick={(e: any) => handleClick(city.id)}
 						>
@@ -81,7 +82,7 @@ const App = () => {
 						))
 					)}
 			</div>
-			<div className='collumn'>
+			<div className={styles.collumn}>
 				{
 					pickedNetworkPending ? (
 						<div>Loading...</div>
@@ -100,14 +101,17 @@ const App = () => {
 									}
 									return (
 										<div
-											className='collumn_item__right' 
+											className={styles.collumn_item__right} 
 											key={item.id}
 											onClick={(e: any) => likeStation(item.id)}
 										>
-											<span className='collumn_item__right_text'>
+											<span className={styles.collumn_item__right_text}>
 												{item.name}
 											</span>
-											<span className={classNameList}/>
+											<span className={cn(
+												{[styles.like]: isLiked},
+												{[styles.notLike]: !isLiked}
+											)}/>
 										</div>
 									)
 								}
