@@ -1,0 +1,32 @@
+.item {
+	margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item:hover {
+	background-color: rgb(226, 226, 226);
+	transition: ease-in-out 0.3s;
+}
+.item:not(:hover) {
+	background-color: white;
+	transition: ease-in-out 0.3s;
+}
+.text {
+	width: 90%;
+}
+.like {
+	width: 10px;
+	height: 10px;
+	background-color: blue;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+.notLike {
+	width: 10px;
+	height: 10px;
+	background-color: grey;
+	border-radius: 50%;
+	margin-right: 5px;
+}

@@ -17,9 +17,10 @@ import { fetchCitiesRequest } from 'library/common/actions/citiesActions';
 import { fetchPickedNetworRequest } from 'library/common/actions/pickedNetworkActions';
 
 import Header from 'components/Header/Header';
-import List from 'components/List/List';
 
 import styles from 'App.module.css';
+import CitiesList from 'components/CitiesList/CitiesList';
+import NetworkStationsList from 'components/NetworkStationsList/NetworkStationsList';
 
 interface INetwork {
     company: [];
@@ -66,7 +67,7 @@ const App = () => {
 		};
 	}, [pickedNetwork]);
 
-	const handleClick = (id: string) => {
+	const handleCityClick = (id: string) => {
 		const isSameID = pickedNetwork.find((item: INetwork) => item.id === id);
 		if (isSameID) {
 			setNetwork(isSameID);
@@ -92,25 +93,22 @@ const App = () => {
 		<>
 			<Header network={network} />
 			<div className={styles.content}>
-				{
-					cities.length && <List
-						listItems={cities}
-						itemType='cities'
-						pending={pending}
-						error={error}
-						handleClick={handleClick}
-					/>
-				}
-				{
-					network && <List
-						listItems={network.stations}
-						itemType='networks'
-						pending={pickedNetworkPending}
-						error={pickedNetworkError}
-						likedStations={likedStations}
-						handleClick={likeStation}
-					/>
-				}
+				<div className={styles.collumn}>
+					{pending ? <div>Loading...</div> : error ? <div>Error</div> : (
+						<CitiesList cities={cities} handleCityClick={handleCityClick} />
+					)}
+				</div>
+				<div className={styles.collumn}>
+					{pickedNetworkPending ? <div>Loading...</div> : pickedNetworkError ? <div>Error</div> : (
+						network && network.stations.length && (
+							<NetworkStationsList
+								stations={network.stations}
+								likeStation={likeStation}
+								likedStations={likedStations}
+							/>
+						)
+					)}
+				</div>
 			</div>
 		</> 
   	);
