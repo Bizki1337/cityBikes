@@ -4,7 +4,6 @@ import {
 	FETCH_CITIES_FAILURE,
 } from 'library/common/actionTypes/citiesActionTypes';
   
-  
 const initialState: any = {
 	pending: false,
 	cities: [],

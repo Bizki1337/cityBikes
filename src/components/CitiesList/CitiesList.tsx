@@ -1,21 +1,32 @@
+import cn from 'classnames';
+
 import styles from './citiesList.module.css';
 
-export interface ICity {
+interface ICity {
+    company: string[];
 	id: string;
 }
 
-export interface ICitiesList {
+interface ICitiesList {
+    activeCity: string;
 	cities: ICity[];
 	handleCityClick: (id: string) => void;
 }
 
-const CitiesList = ({cities, handleCityClick}: ICitiesList) => (
+const CitiesList = ({
+    activeCity,
+    cities, 
+    handleCityClick
+}: ICitiesList) => (
     <>
-        {cities.map((city: any, index: any) => (
+        {cities.map((city: ICity, index: number) => (
             <div 
-                className={styles.item}
                 key={city.id} 
                 onClick={() => handleCityClick(city.id)}
+                className={cn(
+                    [styles.item],
+                    {[styles.activeItem]: activeCity === city.id}, 
+                )}
             >
                 <span>{++index}. {city.id}</span>
             </div>
